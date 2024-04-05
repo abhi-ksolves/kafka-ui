@@ -14,8 +14,18 @@ management:
 
 logging:
   level:
+    io:
+      r2dbc:
+        postgresql:
+          QUERY: DEBUG
+          PARAM: DEBUG
     root: INFO
     com.provectus: DEBUG
     reactor.netty.http.server.AccessLog: INFO
     org.hibernate.validator: WARN
 
+spring:
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/KMS_DB
+    username: postgres
+    password: pgconn990

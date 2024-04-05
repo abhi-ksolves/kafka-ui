@@ -1986,6 +1986,27 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApplicationInfo'
 
+  /api/logo/{id}:
+    get:
+      tags:
+        - ApplicationConfig
+      summary: Gets application logo
+      operationId: getApplicationLogo
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the image to view
+          schema:
+            type: integer
+      responses:
+        200:
+          description: OK
+          content:
+            application/octet-stream: {}
+        404':
+          description: Image not found
+
   /api/config:
     get:
       tags:
@@ -2165,6 +2186,14 @@ components:
               type: string
             htmlUrl:
               type: string
+
+    ApplicationLogo:
+      type: object
+      properties:
+        logoName:
+          type: string
+        logoType:
+          type: string
 
     Cluster:
       type: object

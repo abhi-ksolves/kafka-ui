@@ -9,11 +9,13 @@ import com.provectus.kafka.ui.model.ApplicationConfigDTO;
 import com.provectus.kafka.ui.model.ApplicationConfigPropertiesDTO;
 import com.provectus.kafka.ui.model.ApplicationConfigValidationDTO;
 import com.provectus.kafka.ui.model.ApplicationInfoDTO;
+import com.provectus.kafka.ui.model.ApplicationLogoDTO;
 import com.provectus.kafka.ui.model.ClusterConfigValidationDTO;
 import com.provectus.kafka.ui.model.RestartRequestDTO;
 import com.provectus.kafka.ui.model.UploadedFileInfoDTO;
 import com.provectus.kafka.ui.model.rbac.AccessContext;
 import com.provectus.kafka.ui.service.ApplicationInfoService;
+import com.provectus.kafka.ui.service.ApplicationLogoHandlingService;
 import com.provectus.kafka.ui.service.KafkaClusterFactory;
 import com.provectus.kafka.ui.util.ApplicationRestarter;
 import com.provectus.kafka.ui.util.DynamicConfigOperations;
@@ -53,10 +55,16 @@ public class ApplicationConfigController extends AbstractController implements A
   private final ApplicationRestarter restarter;
   private final KafkaClusterFactory kafkaClusterFactory;
   private final ApplicationInfoService applicationInfoService;
+  private final ApplicationLogoHandlingService applicationLogoService;
 
   @Override
   public Mono<ResponseEntity<ApplicationInfoDTO>> getApplicationInfo(ServerWebExchange exchange) {
     return Mono.just(applicationInfoService.getApplicationInfo()).map(ResponseEntity::ok);
+  }
+
+  @Override
+  public Mono<ResponseEntity<Void>> getApplicationLogo(Integer id, ServerWebExchange exchange) {
+    return null;
   }
 
   @Override
