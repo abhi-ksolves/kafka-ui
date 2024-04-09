@@ -1,6 +1,7 @@
 package com.provectus.kafka.ui.controller;
 
 import com.provectus.kafka.ui.entity.Customers;
+import com.provectus.kafka.ui.entity.Users;
 import com.provectus.kafka.ui.service.ApplicationLogoHandlingService;
 import com.provectus.kafka.ui.service.CustomerDetailsService;
 import lombok.RequiredArgsConstructor;
@@ -9,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
@@ -32,6 +34,8 @@ public class ApplicationLogoController {
     return ResponseEntity.ok(customerDetailsService.getCustomerDetailsById(id));
   }
 
-
-
+  @GetMapping(value = "/logo/metadata",produces = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<Mono<Users>> getCustomerDetails(@RequestParam(name = "email") String emailId) {
+    return ResponseEntity.ok(customerDetailsService.getUserDetailsByEmailId(emailId));
+  }
 }

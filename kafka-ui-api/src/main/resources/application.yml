@@ -26,6 +26,6 @@ logging:
 
 spring:
   r2dbc:
-    url: r2dbc:postgresql://localhost:5432/KMS_DB
+    url: r2dbc:postgresql://localhost:5432/KMS
     username: postgres
     password: pgconn990
