@@ -37,5 +37,5 @@ public class ApplicationLogoController {
   @GetMapping(value = "/logo/metadata",produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<Mono<Users>> getCustomerDetails(@RequestParam(name = "email") String emailId) {
     return ResponseEntity.ok(customerDetailsService.getUserDetailsByEmailId(emailId));
-  }
+  } 
 }
