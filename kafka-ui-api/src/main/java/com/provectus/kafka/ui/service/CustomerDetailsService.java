@@ -6,7 +6,9 @@ import com.provectus.kafka.ui.repository.CustomerRepository;
 import com.provectus.kafka.ui.repository.UsersRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 import reactor.core.publisher.Mono;
 
 @Service
@@ -24,6 +26,8 @@ public class CustomerDetailsService {
   }
 
   public Mono<Users> getUserDetailsByEmailId(String emailId){
-    return usersRepository.findByUserEmail(emailId);
+    return usersRepository.findByUserEmail(emailId).switchIfEmpty(Mono.error(
+        new ResponseStatusException(HttpStatus.OK,"User not found")
+    ));
   }
 }
